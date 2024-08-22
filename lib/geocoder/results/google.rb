@@ -99,6 +99,14 @@ module Geocoder::Result
       @data['address_components']
     end
 
+    def buildings
+      @data['buildings']
+    end
+
+    def entrances
+      @data['entrances']
+    end
+
     ##
     # Get address components of a given type. Valid types are defined in
     # Google's Geocoding API documentation and include (among others):

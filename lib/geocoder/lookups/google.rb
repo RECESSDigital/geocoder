@@ -71,6 +71,9 @@ module Geocoder::Lookup
         :sensor => "false",
         :language => (query.language || configuration.language)
       }
+      if query.options[:v]
+        params[:v] = query.options[:v]
+      end
       if query.options[:google_place_id]
         params[:place_id] = query.sanitized_text
       else
@@ -87,6 +90,9 @@ module Geocoder::Lookup
       end
       unless (result_type = query.options[:result_type]).nil?
         params[:result_type] = result_type.is_a?(Array) ? result_type.join("|") : result_type
+      end
+      unless (extra_computations = query.options[:extra_computations]).nil?
+        params[:extra_computations] = extra_computations.is_a?(Array) ? extra_computations.join("|") : extra_computations
       end
       params
     end
